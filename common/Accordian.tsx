@@ -14,7 +14,7 @@ const Accordian: React.FunctionComponent = () => {
           <button
             className={
               (isActive ? "bg-slate-500" : "") +
-              " flex items-center justify-between rounded-md shadow-md bg-slate-600 hover:bg-slate-500 rounded-sm px-5 py-3 w-full text-left text-cyan-50"
+              " flex items-center justify-between rounded-md shadow-md bg-slate-600 hover:bg-slate-500 px-5 py-3 w-full text-left text-cyan-50"
             }
             onClick={handleClick}
           >

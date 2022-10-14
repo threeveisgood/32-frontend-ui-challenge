@@ -49,7 +49,7 @@ const Bento: React.FunctionComponent = () => {
       <div
         className={
           (isOpen ? "flex" : "hidden") +
-          " absolute bg-slate-100 top-14 w-80 z-[998] px-5 py-6 shadow-xl shadow-gray-400 rounded-md"
+          " absolute bg-slate-100 top-14 w-80 z-[998] px-5 py-6 shadow-md shadow-gray-400"
         }
       >
         Pop-Tarts
