@@ -8,17 +8,15 @@ import Carousel from "../common/Carousel";
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <div className="container mx-auto">
-        <Accordian />
-        <Block />
-        <Bento />
-        <Block />
-        <Button />
-        <Block />
-        <Card />
-        <Block />
-      </div>
+    <div className="container mx-auto">
+      <Accordian />
+      <Block />
+      <Bento />
+      <Block />
+      <Button />
+      <Block />
+      <Card />
+      <Block />
       <Carousel />
     </div>
   );
