@@ -11,7 +11,11 @@ const Card: React.FunctionComponent<ICardProps> = () => {
         <div className="flex relative">
           <Image
             className="rounded-t-md w-full"
-            src="/static/aurora.jpg"
+            src={
+              "/static/aurora" +
+              String(Math.floor(Math.random() * 4 + 1)) +
+              ".jpg"
+            }
             alt="aurora"
             width={270}
             height={140}
