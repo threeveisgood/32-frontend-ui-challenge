@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    a {
+     text-decoration: none;
+    }
+}
+
+@layer utilities {
+    .mask-images {
+      -webkit-mask-image: linear-gradient(to right, rgb(0, 0, 0) calc(100% - 72px), transparent);
+      mask-image: linear-gradient(to right, rgb(0, 0, 0) calc(100% - 72px), transparent); 
+    }
+
+    .mask-image {
+      -webkit-mask: linear-gradient(to right, transparent, rgb(0, 0, 0) 72px) 0px 0px;
+      mask: linear-gradient(to right, rgb(0, 0, 0) calc(100% - 72px), transparent);
+    }
+
+    .mask-illust {
+       -webkit-mask-image: -webkit-radial-gradient(center, white, black);
+       mask-image: -webkit-radial-gradient(white, black);
+    }
+
+    .carousel-transition {
+      transition: all 0.2s ease-in 0s;
+    }
+
+    .illust-transition {
+      transition: opacity 0.2s ease 0s;
+    }
+
+    .title-transition {
+      transition: color 0.2s ease 0s;
+    }
+
+    .carousel-btn-container-transition {
+      transition: opacity 0.4s ease 0s;
+    }
+
+    .carousel-btn-hover-transtiion {
+      transition: visibility 0.4s ease 0s, opacity 0.4s ease 0s;
+    }
+
+    .carousel-btn-transition {
+        transition: visibility 0.4s ease 0s, opacity 0.4s ease 0s, background-color 0.2s ease 0s, color 0.2s ease 0s;
+    }
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-full hover:bg-cyan-700 bg-cyan-600 box-border text-white cursor-pointer px-5 py-1.5 text-center select-none;
+  }
+}

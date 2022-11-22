@@ -5,6 +5,7 @@ import Block from "../common/Block";
 import Button from "../common/Button";
 import Card from "../common/Card";
 import Carousel from "../common/Carousel";
+import CarouselSwiper from "../common/CarouselSwiper";
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +17,8 @@ const Home: NextPage = () => {
       <Button />
       <Block />
       <Card />
+      <Block />
+      <CarouselSwiper />
       <Block />
       <Carousel />
     </div>
