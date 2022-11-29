@@ -1,12 +1,10 @@
-import { Cookies } from "react-cookie";
+import { getCookie, setCookie, deleteCookie, hasCookie } from "cookies-next";
 
-const cookies = new Cookies();
-
-export const setRefreshToken = (refreshToken: string) => {
+export const setJwtToken = (jwtToken: string) => {
   const today = new Date();
   const expireDate = today.setDate(today.getDate() + 7);
 
-  return cookies.set("refreshToken", refreshToken, {
+  return setCookie("jwt_token", jwtToken, {
     sameSite: "strict",
     path: "/",
     expires: new Date(expireDate),
@@ -14,9 +12,13 @@ export const setRefreshToken = (refreshToken: string) => {
 };
 
 export const getCookieToken = () => {
-  return cookies.get("refresh_token");
+  return getCookie("jwt_token");
 };
 
 export const removeCookieToken = () => {
-  return cookies.remove("refresh_token", { sameSite: "strict", path: "/" });
+  return deleteCookie("jwt_token", { sameSite: "strict", path: "/" });
+};
+
+export const isCookieToken = () => {
+  return hasCookie("jwt_token");
 };

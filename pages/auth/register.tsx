@@ -1,5 +1,5 @@
 import * as React from "react";
-import RegisterForm from "../../features/Auth/RegisterForm";
+import RegisterForm from "../../features/auth/RegisterForm";
 
 const Register: React.FunctionComponent = () => {
   return (

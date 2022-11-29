@@ -23,11 +23,18 @@ const RegisterForm: React.FunctionComponent = () => {
         return;
       }
 
-      register({
-        email: enteredEmail,
-        password: enteredPassword,
-        username: enteredUsername,
-      });
+      register(
+        {
+          email: enteredEmail,
+          password: enteredPassword,
+          username: enteredUsername,
+        },
+        {
+          onSuccess: () => {
+            router.push("/auth/login");
+          },
+        }
+      );
     },
   });
 

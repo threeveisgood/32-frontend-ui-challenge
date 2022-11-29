@@ -20,10 +20,17 @@ const LoginForm: React.FunctionComponent = () => {
         return;
       }
 
-      login({
-        identifier: enteredidentifier,
-        password: enteredPassword,
-      });
+      login(
+        {
+          identifier: enteredidentifier,
+          password: enteredPassword,
+        },
+        {
+          onSuccess: () => {
+            router.push("/");
+          },
+        }
+      );
     },
   });
 
@@ -57,7 +64,11 @@ const LoginForm: React.FunctionComponent = () => {
                 />
               </div>
               <div className="flex mt-12 justify-between items-center">
-                <button type="button" onClick={switchAuthModeHandler}>
+                <button
+                  className="text-sm"
+                  type="button"
+                  onClick={switchAuthModeHandler}
+                >
                   회원가입
                 </button>
                 <button type="submit" className="btn-primary">
