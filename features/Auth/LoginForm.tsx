@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import GoogleLogin from "./GoogleLogin";
 import { useLogin } from "./Queries";
 
 const LoginForm: React.FunctionComponent = () => {
@@ -7,6 +8,7 @@ const LoginForm: React.FunctionComponent = () => {
   const switchAuthModeHandler = () => router.push("/auth/register");
   const { mutate: login, isLoading } = useLogin();
 
+  console.log(router.query);
   const formik = useFormik({
     initialValues: {
       identifier: "",
@@ -76,6 +78,7 @@ const LoginForm: React.FunctionComponent = () => {
                 </button>
               </div>
             </form>
+            <GoogleLogin />
           </div>
         </div>
       </div>
