@@ -8,7 +8,6 @@ const LoginForm: React.FunctionComponent = () => {
   const switchAuthModeHandler = () => router.push("/auth/register");
   const { mutate: login, isLoading } = useLogin();
 
-  console.log(router.query);
   const formik = useFormik({
     initialValues: {
       identifier: "",
@@ -78,7 +77,9 @@ const LoginForm: React.FunctionComponent = () => {
                 </button>
               </div>
             </form>
-            <GoogleLogin />
+            <div className="mt-10">
+              <GoogleLogin />
+            </div>
           </div>
         </div>
       </div>

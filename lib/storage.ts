@@ -11,12 +11,26 @@ export const setJwtToken = (jwtToken: string) => {
   });
 };
 
+export const setUsername = (username: string) => {
+  const today = new Date();
+  const expireDate = today.setDate(today.getDate() + 7);
+
+  return setCookie("username", username, {
+    sameSite: "strict",
+    path: "/",
+    expires: new Date(expireDate),
+  });
+};
+
 export const getCookieToken = () => {
   return getCookie("jwt_token");
 };
 
 export const removeCookieToken = () => {
-  return deleteCookie("jwt_token", { sameSite: "strict", path: "/" });
+  return [
+    deleteCookie("jwt_token", { sameSite: "strict", path: "/" }),
+    deleteCookie("username", { sameSite: "strict", path: "/" }),
+  ];
 };
 
 export const isCookieToken = () => {

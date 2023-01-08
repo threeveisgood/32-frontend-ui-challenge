@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef } from "react";
 
 const circlesRender = () => {
   const circles = [];
@@ -11,11 +11,14 @@ const circlesRender = () => {
 };
 
 const Bento: React.FunctionComponent = () => {
-  const bentoRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const bentoRef = useRef<HTMLButtonElement>(null);
+  const [isOpen, toggleIsOpen] = useReducer(
+    (previous: boolean) => !previous,
+    false
+  );
 
   const handleClick = () => {
-    setIsOpen((current) => !current);
+    toggleIsOpen();
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -24,7 +27,7 @@ const Bento: React.FunctionComponent = () => {
       bentoRef.current &&
       !bentoRef.current.contains(e.target as HTMLDivElement)
     )
-      setIsOpen(false);
+      toggleIsOpen();
   };
 
   useEffect(() => {
@@ -36,20 +39,21 @@ const Bento: React.FunctionComponent = () => {
 
   return (
     <div className="relative">
-      <div
+      <button
         onClick={handleClick}
         ref={bentoRef}
         className={
-          (isOpen ? "bg-slate-200" : " ") +
-          " flex flex-wrap items-center justify-center w-[45px] cursor-pointer p-3 hover:bg-slate-200 rounded-full"
+          (isOpen ? "bg-slate-800" : " ") +
+          " flex flex-wrap items-center justify-center w-[45px] cursor-pointer p-3 hover:bg-slate-800 rounded-full"
         }
       >
         {circlesRender()}
-      </div>
+      </button>
       <div
+        data-testid="board"
         className={
           (isOpen ? "flex" : "hidden") +
-          " absolute bg-slate-100 cursor-pointer top-14 w-80 z-[998] px-5 py-6 shadow-md shadow-gray-400"
+          " absolute bg-slate-800 cursor-pointer top-14 w-80 z-[998] px-5 py-6 shadow-md shadow-slate-800"
         }
       >
         Pop-Tarts

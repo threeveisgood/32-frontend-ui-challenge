@@ -32,7 +32,7 @@ const Accordian: React.FunctionComponent = () => {
           <div
             className={
               (isActive ? "block" : "hidden") +
-              " bg-stone-100 px-3.5 py-5 rounded-b-sm shadow-lg"
+              " bg-slate-800 px-3.5 py-5 rounded-b-sm shadow-lg"
             }
           >
             클릭해버렸습니다.

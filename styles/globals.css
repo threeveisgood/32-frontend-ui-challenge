@@ -6,6 +6,10 @@
     a {
      text-decoration: none;
     }
+
+    input {      
+      @apply bg-zinc-600;
+    }
 }
 
 @layer utilities {

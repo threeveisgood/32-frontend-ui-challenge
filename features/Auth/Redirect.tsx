@@ -1,35 +1,38 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { setJwtToken, setUsername } from "../../lib/storage";
 import { useGoogleLogin } from "./Queries";
 
 const Redirect: React.FunctionComponent = () => {
   const router = useRouter();
-  const [text, setText] = useState("Loading...");
-  const { id_token } = router.query;
-  const accessToken = String(id_token);
+  const { access_token } = router.query;
+  const [token, setToken] = useState("");
+  const [text, setText] = useState("로딩 중...");
 
-  console.log(accessToken);
+  const { data, isLoading, isError } = useGoogleLogin(token);
 
-  const { data, isSuccess, isError, error, isLoading } =
-    useGoogleLogin(accessToken);
+  useEffect(() => {
+    if (router.isReady) {
+      setToken(String(access_token));
 
-  if (isLoading) {
-    return <div></div>;
-  }
+      if (isLoading) {
+        setText("로딩 중입니다...");
+      }
 
-  if (isSuccess) {
-    setTimeout(() => router.push("/"), 3000);
-    setText(
-      "Successfully logged in. You wii be redirected in a few seconds..."
-    );
-  }
+      if (data) {
+        setJwtToken(data.jwt);
+        setUsername(data.user.username);
+        setText("성공적으로 로그인하였습니다. 몇초 후 리다이렉트 됩니다.. ");
+        setTimeout(() => router.push("/"), 3000);
+      }
 
-  if (isError) {
-    console.log(error);
-    setText("An error occurred. please see your developer console.");
-  }
+      if (isError) {
+        setText("에러가 발생하였습니다.");
+      }
+    }
+  }, [data, isLoading, isError, router, access_token]);
 
-  return <>{text}</>;
+  return <p>{text}</p>;
 };
 
 export default Redirect;

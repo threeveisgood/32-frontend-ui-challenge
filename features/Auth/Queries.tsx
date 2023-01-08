@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import client from "../../lib/client";
-import { setJwtToken } from "../../lib/storage";
+import { setJwtToken, setUsername } from "../../lib/storage";
 import { LoginParams, RegisterParams, RegisterResult } from "../../types/auth";
 import { Error } from "../../types/error";
+import toast from "react-hot-toast";
 
 // local signup code
 
@@ -40,39 +41,34 @@ export async function login(params: LoginParams) {
 export function useLogin() {
   const mutation = useMutation(login, {
     onSuccess: (data) => {
-      console.log("Well done!");
       console.log("User profile", data.user);
       console.log("User token", data.jwt);
       setJwtToken(data.jwt);
+      setUsername(data.user.username);
     },
     onError: (error: Error) => {
-      console.log("An error occurred:", error.response);
+      console.log("에러가 발생하였습니다.:", error.response);
     },
   });
 
   return mutation;
 }
 
-// google provider login code
+// google provider login
 
-export async function googleLogin(access_token: string) {
+const fetchGoogleLogin = async (token: string): Promise<RegisterResult> => {
   const { data } = await client.get(
-    `http://localhost:1337/api/auth/google/callback${access_token}`
+    `http://localhost:1337/api/auth/google/callback?access_token=${token}`
   );
 
   return data;
-}
+};
 
-export function useGoogleLogin(access_token: string) {
-  return useQuery(["googleProvider"], () => googleLogin(access_token), {
-    onSuccess: (data) => {
-      console.log("Well done!");
-      console.log("User profile", data.user);
-      console.log("User token", data.jwt);
-      setJwtToken(data.jwt);
-    },
+export const useGoogleLogin = (token: string) => {
+  return useQuery(["googleLogin", token], () => fetchGoogleLogin(token), {
+    onSuccess: () => {},
     onError: (error: Error) => {
-      console.log("An error occurred:", error.response);
+      toast.error("에러가 발생하였습니다.: " + error.message);
     },
   });
-}
+};
