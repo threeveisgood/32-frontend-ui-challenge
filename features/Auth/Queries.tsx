@@ -43,8 +43,6 @@ export function useLogin() {
     onSuccess: (data) => {
       console.log("User profile", data.user);
       console.log("User token", data.jwt);
-      setJwtToken(data.jwt);
-      setUsername(data.user.username);
     },
     onError: (error: Error) => {
       console.log("에러가 발생하였습니다.:", error.response);

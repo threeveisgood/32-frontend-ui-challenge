@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import { AiFillDownCircle } from "react-icons/ai";
 
 const Accordian: React.FunctionComponent = () => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, toggleIsActive] = useReducer(
+    (previous: boolean) => !previous,
+    false
+  );
+
   const handleClick = () => {
-    setIsActive((current) => !current);
+    toggleIsActive();
   };
 
   return (

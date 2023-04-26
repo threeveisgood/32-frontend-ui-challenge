@@ -6,6 +6,10 @@ import { Provider } from "react-redux";
 import store from "../lib/store";
 import Layout from "../features/Layout";
 
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  require("../mocks");
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>

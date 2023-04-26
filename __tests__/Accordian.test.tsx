@@ -1,12 +1,12 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Accordian from "../common/Accordian";
 import "@testing-library/jest-dom";
 
 describe("<Accordian />", () => {
-  it("accordian 1", () => {
-    const { getByText } = render(<Accordian />);
+  it("accordian test", () => {
+    render(<Accordian />);
 
-    const AccordianText = getByText(/Accordian 1/i);
+    const AccordianText = screen.getByText("Accordian 1");
 
     expect(AccordianText).toBeInTheDocument();
   });
