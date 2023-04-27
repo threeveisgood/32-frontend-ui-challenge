@@ -18,7 +18,7 @@ const Button: React.FunctionComponent = () => {
         onClick={notifySecond}
         className="ml-4 rounded-md bg-slate-700 hover:bg-slate-600 box-border text-white cursor-pointer px-5 py-2 text-center select-none"
       >
-        Makguksu
+        Makguksuu
       </button>
       <Toaster />
     </>
